@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#202d4a" />
+  <link rel="icon" type="image/png" href="/assets/web-icon.png">
+  <title>SI Career Toolkit — Mulai dari Sini</title>
+  <style>
+    :root {
+      --paper: #f8f7f3;
+      --navy: #202d4a;
+      --gold: #b58a3a;
+      --ink: #30333b;
+      --muted: #747783;
+      --line: #e7e5df;
+      --white: #ffffff;
+      --soft: #f0eee8;
+      --shadow: 0 14px 38px rgba(32, 45, 74, .08);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(248, 247, 243, .92);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 850;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      font-family: Georgia, serif;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #555b68;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--navy);
+    }
+
+    h1 {
+      font: 700 clamp(42px, 6vw, 72px)/1.04 Georgia, "Times New Roman", serif;
+      letter-spacing: -.045em;
+      max-width: 780px;
+      margin: 15px 0 20px;
+    }
+
+    .hero p {
+      max-width: 660px;
+      font-size: 17px;
+      color: #5e626c;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      border: 1px solid var(--navy);
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 11px 17px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--navy);
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 25px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero-note span {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font: 700 clamp(28px, 4vw, 42px)/1.1 Georgia, serif;
+      margin: 8px 0 0;
+      letter-spacing: -.025em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 430px;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: #606572;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .career-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .career-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 23px;
+      box-shadow: 0 5px 20px rgba(32, 45, 74, .025);
+      transition: .22s ease;
+    }
+
+    .career-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .career-card[hidden] {
+      display: none;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: #f0eee8;
+      color: var(--navy);
+    }
+
+    .icon-box svg {
+      width: 23px;
+      height: 23px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-top h3 {
+      margin: 1px 0 4px;
+      font-size: 20px;
+      letter-spacing: -.025em;
+    }
+
+    .card-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 17px 0 18px;
+    }
+
+    .tag {
+      background: var(--soft);
+      color: #5e6068;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .subhead {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 900;
+      color: var(--gold);
+      margin: 18px 0 9px;
+    }
+
+    .resource-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .resource {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #efeee9;
+      border-radius: 12px;
+      padding: 10px 11px;
+      text-decoration: none;
+      transition: .18s ease;
+      min-width: 0;
+    }
+
+    .resource:hover {
+      border-color: #d5c49e;
+      background: #fcfbf8;
+    }
+
+    .resource .mini-icon {
+      width: 31px;
+      height: 31px;
+      border-radius: 9px;
+      background: #f3f1eb;
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      flex: 0 0 31px;
+    }
+
+    .mini-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .resource-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .resource-copy strong {
+      display: block;
+      font-size: 12px;
+      color: var(--navy);
+    }
+
+    .resource-copy small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .arrow {
+      color: var(--gold);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .roadmap-wrap {
+      background: var(--navy);
+      border-radius: 26px;
+      padding: clamp(23px, 4vw, 42px);
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .roadmap-wrap:after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(181, 138, 58, .3);
+      border-radius: 50%;
+      right: -100px;
+      top: -115px;
+      box-shadow: 0 0 0 25px rgba(181, 138, 58, .035), 0 0 0 55px rgba(181, 138, 58, .025);
+      pointer-events: none;
+    }
+
+    .roadmap-wrap h2 {
+      color: white;
+      font: 700 clamp(30px, 4vw, 44px)/1.1 Georgia, serif;
+      margin: 8px 0 10px;
+    }
+
+    .roadmap-wrap .intro {
+      color: #cbd0db;
+      font-size: 13px;
+      max-width: 630px;
+      margin: 0 0 28px;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step {
+      border-top: 2px solid var(--gold);
+      padding-top: 13px;
+    }
+
+    .step-number {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .step h3 {
+      color: white;
+      font-size: 16px;
+      margin: 8px 0 6px;
+    }
+
+    .step p {
+      color: #cbd0db;
+      font-size: 12px;
+      margin: 0 0 13px;
+    }
+
+    .step a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #f0d7a4;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 850;
+      border-bottom: 1px solid rgba(240, 215, 164, .45);
+      padding-bottom: 3px;
+    }
+
+    .step a:hover {
+      color: white;
+    }
+
+    .path-picker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 20px 0 24px;
+    }
+
+    .path-picker label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #dce0e8;
+    }
+
+    select {
+      border: 1px solid rgba(255, 255, 255, .25);
+      background: #2a3857;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 35px 10px 12px;
+      font-size: 12px;
+    }
+
+    .callout {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #fffdf8;
+      border: 1px solid #eee7d8;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    .callout .icon-box {
+      background: #f4ead4;
+      color: #8a6523;
+    }
+
+    .callout strong {
+      display: block;
+      color: var(--navy);
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .callout p {
+      color: #666a73;
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      margin-top: 35px;
+      padding: 24px 0 34px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      color: var(--navy);
+    }
+
+    .search {
+      width: min(280px, 100%);
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .search:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(181, 138, 58, .12);
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed #d5d0c4;
+      padding: 25px;
+      border-radius: 16px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .career-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 460px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      .career-card {
+        padding: 18px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="SI Career Toolkit beranda">
+        <span class="brand-mark">SI</span>
+        <span>SI Career Toolkit</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="#career-paths">Career paths</a>
+        <a href="#roadmap">Roadmap pemula</a>
+        <a href="#start">Mulai belajar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="eyebrow">A practical starter guide · Sistem Informasi</div>
+      <h1>Temukan jalurmu.<br>Mulai dari hal kecil.</h1>
+      <p>Kumpulan tools, sumber belajar, dan roadmap sederhana untuk membantumu menjelajahi dunia Sistem Informasi. Kamu
+        tidak harus menguasai semuanya—mulailah dari jalur yang paling membuatmu penasaran.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#career-paths">Jelajahi career path <span aria-hidden="true">↗</span></a>
+        <a class="btn secondary" href="#roadmap">Lihat roadmap pemula</a>
+      </div>
+      <div class="hero-note"><span>✦</span>
+        <div>Catatan: tools di bawah adalah pilihan awal, bukan daftar wajib. Beberapa tools memiliki versi gratis,
+          trial, atau ketentuan lisensi masing-masing.</div>
+      </div>
+    </section>
+
+    <section class="section container" id="career-paths">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">01 / Explore</div>
+          <h2>Tools by career path</h2>
+        </div>
+        <p>Pilih bidang yang ingin kamu coba. Buka situs resmi untuk mengunduh atau mulai menggunakan tools.</p>
+      </div>
+      <div class="filter-row" role="group" aria-label="Filter career path">
+        <button class="filter active" data-filter="all">Semua jalur</button>
+        <button class="filter" data-filter="business">Business & Systems</button>
+        <button class="filter" data-filter="data">Data & Database</button>
+        <button class="filter" data-filter="product">Product & Development</button>
+        <button class="filter" data-filter="project">Project & Operations</button>
+      </div>
+      <div class="section-head" style="margin-bottom:16px; align-items:center;">
+        <p style="margin:0">Tidak tahu mulai dari mana? Cari nama tools atau bidang yang menarik perhatianmu.</p>
+        <input class="search" id="toolSearch" type="search" placeholder="Cari tools, contoh: Figma..."
+          aria-label="Cari tools" />
+      </div>
+
+      <div class="career-grid" id="careerGrid">
+        <article class="career-card" data-category="business"
+          data-search="business analyst system analyst erp consultant drawio lucidchart figma odoo sap">
+          <div class="card-top">
+            <div class="icon-box"><svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M7 8h10M7 12h6M7 16h8" />
+              </svg></div>
+            <div>
+              <h3>Business & Systems</h3>
+              <p>Memahami kebutuhan bisnis dan merancang solusi sistem.</p>
+            </div>
+          </div>
+          <div class="tag-row"><span class="tag">Business Analyst</span><span class="tag">System Analyst</span><span
+              class="tag">ERP Consultant</span></div>
+          <div class="subhead">Tools untuk dicoba</div>
+          <div class="resource-list">
+            <a class="resource" href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="14" width="7" height="7" rx="1" />
+                  <path d="M10 6h4a2 2 0 0 1 2 2v6" />
+                </svg></span><span class="resource-copy"><strong>diagrams.net (draw.io)</strong><small>Flowchart, proses
+                  bisnis, dan ERD · Web</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.figma.com/downloads/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 12a4 4 0 1 0 0-8H8a4 4 0 0 0 0 8h4Z" />
+                  <path d="M12 12H8a4 4 0 1 0 4 4v-4Z" />
+                  <path d="M12 12h4a4 4 0 1 0-4-4v4Z" />
+                  <circle cx="16" cy="16" r="4" />
+                </svg></span><span class="resource-copy"><strong>Figma</strong><small>Wireframe dan prototype
+                  antarmuka</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.odoo.com/trial" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="7" rx="1" />
+                  <rect x="14" y="3" width="7" height="7" rx="1" />
+                  <rect x="3" y="14" width="7" height="7" rx="1" />
+                  <rect x="14" y="14" width="7" height="7" rx="1" />
+                </svg></span><span class="resource-copy"><strong>Odoo</strong><small>Eksplorasi CRM, sales, inventory,
+                  dan ERP</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.lucidchart.com/pages/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <circle cx="6" cy="6" r="2" />
+                  <circle cx="18" cy="18" r="2" />
+                  <path d="M8 6h6a4 4 0 0 1 4 4v6" />
+                </svg></span><span class="resource-copy"><strong>Lucidchart</strong><small>Diagram sistem dan pemetaan
+                  proses</small></span><span class="arrow">↗</span></a>
+          </div>
+          <div class="subhead">Roadmap awal</div>
+          <div class="resource-list">
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=business+process+mapping+beginner+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>1. Pahami proses bisnis</strong><small>Belajar
+                  flowchart dan business process mapping</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=system+analysis+design+use+case+diagram+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="9" r="2" />
+                  <path d="M8 17c1-3 7-3 8 0" />
+                </svg></span><span class="resource-copy"><strong>2. Latihan analisis kebutuhan</strong><small>Use case
+                  diagram dan kebutuhan pengguna</small></span><span class="arrow">↗</span></a>
+          </div>
+        </article>
+
+        <article class="career-card" data-category="data"
+          data-search="data analyst database administrator data engineer excel power bi tableau looker studio mysql postgresql mongodb python">
+          <div class="card-top">
+            <div class="icon-box"><svg viewBox="0 0 24 24">
+                <path d="M4 19V5M4 19h17" />
+                <rect x="7" y="12" width="3" height="7" rx="1" />
+                <rect x="13" y="8" width="3" height="11" rx="1" />
+                <rect x="19" y="4" width="2" height="15" rx="1" />
+              </svg></div>
+            <div>
+              <h3>Data & Database</h3>
+              <p>Mengubah data mentah menjadi informasi yang berguna.</p>
+            </div>
+          </div>
+          <div class="tag-row"><span class="tag">Data Analyst</span><span class="tag">BI Analyst</span><span
+              class="tag">Database Admin</span></div>
+          <div class="subhead">Tools untuk dicoba</div>
+          <div class="resource-list">
+            <a class="resource" href="https://www.microsoft.com/microsoft-365/excel" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M8 8l4 8m0-8-4 8M14 8h3m-3 4h3m-3 4h3" />
+                </svg></span><span class="resource-copy"><strong>Microsoft Excel</strong><small>Spreadsheet, rumus,
+                  pivot table, dan grafik</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://powerbi.microsoft.com/desktop/" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M4 20V11h4v9M10 20V5h4v15M16 20v-8h4v8" />
+                </svg></span><span class="resource-copy"><strong>Power BI Desktop</strong><small>Dashboard dan business
+                  intelligence</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://dev.mysql.com/downloads/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="5" rx="8" ry="3" />
+                  <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+                </svg></span><span class="resource-copy"><strong>MySQL</strong><small>Belajar SQL dan database
+                  relasional</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.postgresql.org/download/" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="5" rx="8" ry="3" />
+                  <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+                </svg></span><span class="resource-copy"><strong>PostgreSQL</strong><small>Database relasional untuk
+                  kebutuhan lebih lanjut</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.mongodb.com/try/download/community" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 3c-3 4-5 6-4 11 .5 3 2.5 5 4 7 1.5-2 3.5-4 4-7 1-5-1-7-4-11Z" />
+                  <path d="M12 8v13" />
+                </svg></span><span class="resource-copy"><strong>MongoDB Community</strong><small>Database dokumen /
+                  NoSQL</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.tableau.com/products/desktop" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" />
+                </svg></span><span class="resource-copy"><strong>Tableau</strong><small>Eksplorasi visualisasi
+                  data</small></span><span class="arrow">↗</span></a>
+          </div>
+          <div class="subhead">Roadmap awal</div>
+          <div class="resource-list">
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=belajar+excel+dasar+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>1. Mulai dari spreadsheet</strong><small>Rumus dasar,
+                  sort/filter, dan pivot table</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=belajar+SQL+dasar+SELECT+WHERE+JOIN+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>2. Pelajari SQL</strong><small>SELECT, WHERE, GROUP BY,
+                  dan JOIN</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=power+bi+dashboard+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>3. Buat dashboard</strong><small>Visualisasikan data
+                  penjualan sederhana</small></span><span class="arrow">↗</span></a>
+          </div>
+        </article>
+
+        <article class="career-card" data-category="product"
+          data-search="software developer frontend backend ui ux designer figma vscode visual studio code git github python javascript html css laravel">
+          <div class="card-top">
+            <div class="icon-box"><svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="13" rx="2" />
+                <path d="M8 21h8M12 17v4M8 9l-2 2 2 2M12 13l2-4" />
+              </svg></div>
+            <div>
+              <h3>Product & Development</h3>
+              <p>Mendesain pengalaman pengguna dan membangun aplikasi.</p>
+            </div>
+          </div>
+          <div class="tag-row"><span class="tag">UI/UX Designer</span><span class="tag">Web Developer</span><span
+              class="tag">Software Developer</span></div>
+          <div class="subhead">Tools untuk dicoba</div>
+          <div class="resource-list">
+            <a class="resource" href="https://code.visualstudio.com/Download" target="_blank"
+              rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m16 3 5 3v12l-5 3-10-8 10-10Z" />
+                  <path d="m6 8-3 4 3 4M16 3v18" />
+                </svg></span><span class="resource-copy"><strong>Visual Studio Code</strong><small>Editor kode untuk
+                  pengembangan aplikasi</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <circle cx="6" cy="6" r="2" />
+                  <circle cx="18" cy="6" r="2" />
+                  <circle cx="12" cy="18" r="2" />
+                  <path d="M8 6h8M6 8v5a5 5 0 0 0 5 5h1" />
+                </svg></span><span class="resource-copy"><strong>Git</strong><small>Mencatat perubahan
+                  kode</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://github.com/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M9 19c-4 1-4-2-6-2m12 4v-3.5c0-1 .1-1.5-.5-2 3-.3 6-1.5 6-6A4.7 4.7 0 0 0 19 6c.1-1-.1-2-1-3-1.5 0-2.5 1-3 1.5a13 13 0 0 0-6 0C8.5 4 7.5 3 6 3c-.9 1-1.1 2-1 3a4.7 4.7 0 0 0-1.5 3.5c0 4.5 3 5.7 6 6-.6.5-.5 1.5-.5 2V21" />
+                </svg></span><span class="resource-copy"><strong>GitHub</strong><small>Repositori dan kolaborasi
+                  kode</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 3H8a3 3 0 0 0-3 3v4h7v4H8a3 3 0 0 0-3 3v1a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3v-4h1a3 3 0 0 0 3-3V7a4 4 0 0 0-4-4h-3Z" />
+                  <circle cx="9" cy="6" r=".7" />
+                  <circle cx="15" cy="18" r=".7" />
+                </svg></span><span class="resource-copy"><strong>Python</strong><small>Bahasa pemrograman
+                  serbaguna</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://laravel.com/docs" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M4 5h6l4 4h6v10H4z" />
+                  <path d="M4 9h10M10 5v4" />
+                </svg></span><span class="resource-copy"><strong>Laravel</strong><small>Framework PHP untuk aplikasi
+                  web</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.figma.com/downloads/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M12 12a4 4 0 1 0 0-8H8a4 4 0 0 0 0 8h4Z" />
+                  <path d="M12 12H8a4 4 0 1 0 4 4v-4Z" />
+                  <path d="M12 12h4a4 4 0 1 0-4-4v4Z" />
+                  <circle cx="16" cy="16" r="4" />
+                </svg></span><span class="resource-copy"><strong>Figma</strong><small>Desain UI dan prototype sebelum
+                  coding</small></span><span class="arrow">↗</span></a>
+          </div>
+          <div class="subhead">Roadmap awal</div>
+          <div class="resource-list">
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=belajar+HTML+CSS+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>1. Bangun halaman web</strong><small>HTML, CSS, lalu
+                  JavaScript dasar</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=belajar+git+github+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>2. Simpan proyek di GitHub</strong><small>Commit, push,
+                  dan dokumentasikan proyek</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=belajar+figma+UI+UX+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>Alternatif: mulai dari UI/UX</strong><small>Wireframe,
+                  komponen, dan prototype Figma</small></span><span class="arrow">↗</span></a>
+          </div>
+        </article>
+
+        <article class="career-card" data-category="project"
+          data-search="project manager scrum project management trello notion linear slack google cloud odoo sap">
+          <div class="card-top">
+            <div class="icon-box"><svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+                <path d="M8 2v4M16 2v4M3 9h18M7 13h3M7 17h6" />
+              </svg></div>
+            <div>
+              <h3>Project & Operations</h3>
+              <p>Mengatur pekerjaan, koordinasi tim, dan implementasi sistem.</p>
+            </div>
+          </div>
+          <div class="tag-row"><span class="tag">IT Project Manager</span><span class="tag">Product
+              Operations</span><span class="tag">ERP Consultant</span></div>
+          <div class="subhead">Tools untuk dicoba</div>
+          <div class="resource-list">
+            <a class="resource" href="https://trello.com/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <rect x="7" y="7" width="4" height="10" rx="1" />
+                  <rect x="14" y="7" width="4" height="6" rx="1" />
+                </svg></span><span class="resource-copy"><strong>Trello</strong><small>Kanban board dan pelacakan
+                  tugas</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://www.notion.so/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <rect x="4" y="3" width="16" height="18" rx="2" />
+                  <path d="M8 8h2l5 7V8h2M8 17h8" />
+                </svg></span><span class="resource-copy"><strong>Notion</strong><small>Catatan, dokumentasi, dan wiki
+                  tim</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://linear.app/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m5.6 8.4 10 10M8.5 5.5l10 10M4.5 12.5l7 7" />
+                </svg></span><span class="resource-copy"><strong>Linear</strong><small>Issue tracking dan perencanaan
+                  proyek software</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://slack.com/downloads/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M9 3v12M15 9v12M3 9h12M9 15h12" />
+                  <path d="M7 3h4M13 21h4M3 7v4M21 13v4" />
+                </svg></span><span class="resource-copy"><strong>Slack</strong><small>Komunikasi tim dan
+                  koordinasi</small></span><span class="arrow">↗</span></a>
+            <a class="resource" href="https://cloud.google.com/" target="_blank" rel="noopener noreferrer"><span
+                class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9H7Z" />
+                </svg></span><span class="resource-copy"><strong>Google Cloud</strong><small>Infrastruktur cloud dan
+                  layanan aplikasi</small></span><span class="arrow">↗</span></a>
+          </div>
+          <div class="subhead">Roadmap awal</div>
+          <div class="resource-list">
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=project+management+fundamentals+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>1. Pahami dasar proyek</strong><small>Scope, timeline,
+                  risiko, dan pembagian tugas</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=trello+kanban+tutorial+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>2. Praktikkan Kanban</strong><small>Buat board To do,
+                  In progress, dan Done</small></span><span class="arrow">↗</span></a>
+            <a class="resource"
+              href="https://www.youtube.com/results?search_query=agile+scrum+untuk+pemula+bahasa+indonesia"
+              target="_blank" rel="noopener noreferrer"><span class="mini-icon"><svg viewBox="0 0 24 24">
+                  <path d="m9 6 10 6-10 6z" />
+                  <rect x="3" y="3" width="18" height="18" rx="4" />
+                </svg></span><span class="resource-copy"><strong>3. Kenali Agile & Scrum</strong><small>Belajar sprint,
+                  backlog, dan evaluasi tim</small></span><span class="arrow">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="empty" id="emptyState">Tidak ada tools yang cocok. Coba kata kunci lain.</div>
+    </section>
+
+    <section class="section container" id="roadmap">
+      <div class="roadmap-wrap">
+        <div class="eyebrow">02 / Start here</div>
+        <h2>Roadmap pemula</h2>
+        <p class="intro">Belajar tidak harus dimulai dari tools yang paling rumit. Bangun fondasi, praktikkan satu hal
+          kecil, lalu simpan hasilnya sebagai portofolio.</p>
+        <div class="path-picker">
+          <label for="roadmapPath">Pilih jalur belajar:</label>
+          <select id="roadmapPath">
+            <option value="general">Aku masih eksplorasi</option>
+            <option value="business">Business & Systems</option>
+            <option value="data">Data & Database</option>
+            <option value="product">Product & Development</option>
+            <option value="project">Project & Operations</option>
+          </select>
+        </div>
+        <div class="roadmap" id="roadmapSteps" aria-live="polite">
+          <div class="step">
+            <div class="step-number">STEP 01</div>
+            <h3>Kenali masalah</h3>
+            <p>Amati masalah di kampus atau kehidupan sehari-hari.</p><a
+              href="https://www.youtube.com/results?search_query=system+thinking+problem+solving+untuk+pemula"
+              target="_blank" rel="noopener noreferrer">Mulai belajar ↗</a>
+          </div>
+          <div class="step">
+            <div class="step-number">STEP 02</div>
+            <h3>Pelajari fondasi</h3>
+            <p>Kenali alur proses, data, dan kebutuhan pengguna.</p><a
+              href="https://www.youtube.com/results?search_query=pengantar+sistem+informasi+untuk+mahasiswa"
+              target="_blank" rel="noopener noreferrer">Mulai belajar ↗</a>
+          </div>
+          <div class="step">
+            <div class="step-number">STEP 03</div>
+            <h3>Coba satu tools</h3>
+            <p>Pilih tools yang sesuai dengan minatmu.</p><a href="#career-paths">Pilih tools ↗</a>
+          </div>
+          <div class="step">
+            <div class="step-number">STEP 04</div>
+            <h3>Buat mini project</h3>
+            <p>Kerjakan proyek kecil dan dokumentasikan prosesnya.</p><a
+              href="https://www.youtube.com/results?search_query=ide+mini+project+mahasiswa+sistem+informasi"
+              target="_blank" rel="noopener noreferrer">Cari inspirasi ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="callout" id="start">
+        <div class="icon-box"><svg viewBox="0 0 24 24">
+            <path d="M12 3a7 7 0 0 0-4 12.7c.6.4 1 1.1 1 1.8h6c0-.7.4-1.4 1-1.8A7 7 0 0 0 12 3Z" />
+            <path d="M9 21h6M10 18h4" />
+          </svg></div>
+        <div><strong>Aturan sederhana: belajar dengan membuat sesuatu.</strong>
+          <p>Setelah menonton tutorial, coba terapkan pada contoh kecil. Misalnya, buat diagram proses peminjaman ruang
+            kelas, dashboard pengeluaran bulanan, prototype aplikasi kantin, atau board tugas kelompok.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>SI Career Toolkit</strong> · Starter guide untuk mahasiswa Sistem Informasi</div>
+      <div>By Ahmad Kamaludin - Workshop Akademik Himasif</div>
+    </div>
+  </footer>
+
+  <script>
+    const filterButtons = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('.career-card')];
+    const searchInput = document.getElementById('toolSearch');
+    const emptyState = document.getElementById('emptyState');
+    let activeFilter = 'all';
+
+    function filterCards() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+        const matchesQuery = !query || (card.dataset.search + ' ' + card.innerText).toLowerCase().includes(query);
+        const show = matchesCategory && matchesQuery;
+        card.hidden = !show;
+        if (show) visibleCount++;
+      });
+      emptyState.style.display = visibleCount ? 'none' : 'block';
+    }
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        activeFilter = button.dataset.filter;
+        filterCards();
+      });
+    });
+    searchInput.addEventListener('input', filterCards);
+
+    const roadmaps = {
+      general: [
+        ['Kenali masalah', 'Amati masalah di kampus atau kehidupan sehari-hari.', 'https://www.youtube.com/results?search_query=system+thinking+problem+solving+untuk+pemula'],
+        ['Pelajari fondasi', 'Kenali alur proses, data, dan kebutuhan pengguna.', 'https://www.youtube.com/results?search_query=pengantar+sistem+informasi+untuk+mahasiswa'],
+        ['Coba satu tools', 'Pilih tools yang sesuai dengan minatmu.', '#career-paths'],
+        ['Buat mini project', 'Kerjakan proyek kecil dan dokumentasikan prosesnya.', 'https://www.youtube.com/results?search_query=ide+mini+project+mahasiswa+sistem+informasi']
+      ],
+      business: [
+        ['Petakan proses', 'Pilih proses sederhana seperti pemesanan makanan.', 'https://www.youtube.com/results?search_query=business+process+mapping+beginner+bahasa+indonesia'],
+        ['Analisis kebutuhan', 'Identifikasi aktor, masalah, dan kebutuhan sistem.', 'https://www.youtube.com/results?search_query=use+case+diagram+tutorial+bahasa+indonesia'],
+        ['Buat diagram & prototype', 'Gunakan diagrams.net atau Figma untuk merancang solusi.', 'https://app.diagrams.net/'],
+        ['Presentasikan solusi', 'Jelaskan masalah, proses usulan, dan manfaatnya.', 'https://www.youtube.com/results?search_query=contoh+proposal+analisis+perancangan+sistem']
+      ],
+      data: [
+        ['Mulai dari Excel', 'Latih rumus, sort/filter, dan pivot table.', 'https://www.youtube.com/results?search_query=belajar+excel+dasar+untuk+pemula+bahasa+indonesia'],
+        ['Belajar SQL', 'Praktikkan SELECT, WHERE, GROUP BY, dan JOIN.', 'https://www.youtube.com/results?search_query=belajar+SQL+dasar+bahasa+indonesia'],
+        ['Buat dashboard', 'Ubah data sederhana menjadi grafik dan insight.', 'https://www.youtube.com/results?search_query=power+bi+dashboard+untuk+pemula+bahasa+indonesia'],
+        ['Ceritakan temuan', 'Tulis tiga insight dan rekomendasi dari datamu.', 'https://www.youtube.com/results?search_query=data+storytelling+untuk+pemula+bahasa+indonesia']
+      ],
+      product: [
+        ['Pilih jalur awal', 'UI/UX atau web development—pilih satu dulu.', 'https://www.youtube.com/results?search_query=roadmap+web+developer+pemula+bahasa+indonesia'],
+        ['Pelajari fondasi', 'UI/UX: layout & wireframe. Web: HTML dan CSS.', 'https://www.youtube.com/results?search_query=belajar+HTML+CSS+atau+Figma+untuk+pemula'],
+        ['Bangun mini project', 'Buat prototype aplikasi kantin atau halaman web.', 'https://www.youtube.com/results?search_query=mini+project+website+untuk+pemula+bahasa+indonesia'],
+        ['Dokumentasikan', 'Unggah kode ke GitHub atau tampilkan prototype Figma.', 'https://www.youtube.com/results?search_query=portfolio+project+github+untuk+pemula']
+      ],
+      project: [
+        ['Tentukan tujuan', 'Tulis masalah, hasil yang diharapkan, dan batas proyek.', 'https://www.youtube.com/results?search_query=project+management+fundamentals+bahasa+indonesia'],
+        ['Bagi pekerjaan', 'Ubah pekerjaan menjadi tugas kecil yang jelas.', 'https://www.youtube.com/results?search_query=work+breakdown+structure+untuk+pemula'],
+        ['Gunakan Kanban', 'Atur tugas dalam kolom To do, Doing, dan Done.', 'https://www.youtube.com/results?search_query=trello+kanban+tutorial+bahasa+indonesia'],
+        ['Evaluasi hasil', 'Tinjau apa yang selesai, kendala, dan pelajaran tim.', 'https://www.youtube.com/results?search_query=retrospective+agile+untuk+pemula+bahasa+indonesia']
+      ]
+    };
+    const pathNames = {
+      general: 'eksplorasi umum', business: 'Business & Systems',
+      data: 'Data & Database', product: 'Product & Development',
+      project: 'Project & Operations'
+    };
+    const roadmapSteps = document.getElementById('roadmapSteps');
+    const roadmapPath = document.getElementById('roadmapPath');
+    function renderRoadmap(path) {
+      roadmapSteps.innerHTML = roadmaps[path].map((step, index) => `
+        <div class="step">
+          <div class="step-number">STEP ${String(index + 1).padStart(2, '0')}</div>
+          <h3>${step[0]}</h3>
+          <p>${step[1]}</p>
+          <a href="${step[2]}" target="${step[2].startsWith('#') ? '_self' : '_blank'}" rel="noopener noreferrer">${step[2].startsWith('#') ? 'Pilih tools' : 'Mulai belajar'} ↗</a>
+        </div>
+      `).join('');
+    }
+    roadmapPath.addEventListener('change', event => renderRoadmap(event.target.value));
+  </script>
+</body>
+
+</html>
